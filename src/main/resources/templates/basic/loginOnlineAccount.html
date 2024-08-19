@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>온라인 계좌 로그인</title>
+    <style>
+      .container{
+        width : 500px;
+        margin : 50px auto;
+        text-align : center;
+      }
+
+      .button{
+            width : 100px;
+            background-color : red;
+            margin : 5px auto;
+        }
+    </style>
+</head>
+<body>
+    <form class="container" method="post"
+          th:action="@{/basic/work-list/accountlogin/login/}">
+      <span>주민번호 : </span>
+      <input type="text" name = "inputPersonalNum"
+             placeholder="주민번호 앞자리 6자리를 입력하세요."
+      >
+      <br/>
+      <span>핸드폰번호 : </span>
+      <input type="text" name="inputPhoneNum"  placeholder="핸드폰번호입력"
+      ><br/>
+      <span>카드번호 4자리 : </span>
+      <input type="text" name="inputCardNum" placeholder="카드번호 4자리 입력"
+      >
+
+      <div style="text-align:center;margin:20px auto;">
+
+        <button class="button" type="submit">로그인</button>
+          <br/>
+          <span>로그인 횟수 : </span><span th:text="${session.tryedLoginNum}"></span>
+          <br/>
+          <p th:text="${loginErrorMsg}"></p>
+      </div>
+        <a th:href="@{|/basic/work-list/account/start|}">회원가입</a>
+    </form>
+</body>
+</html>

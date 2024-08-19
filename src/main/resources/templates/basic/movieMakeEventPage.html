@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 생성</title>
+
+    <style>
+          .container{
+              width : 400px;
+              margin : 50px auto;
+          }
+
+          #alarm{
+           color : red;
+           font-size : 20px;
+          }
+
+          #eventcontent{
+            width : 300px;
+            height : 200px;
+          }
+
+      </style>
+</head>
+<body>
+
+    <div class="container">
+      <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <h2>할인 코드</h2>
+        <ul th:each="myCode : ${MyCodes}">
+            <li>
+                <span th:text="${myCode.code}"></span>&nbsp;&nbsp;
+                <span th:text="(myCode.isUsed) ? '사용가능' : '사용불가'"></span>&nbsp;&nbsp;
+                <br/>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container" th:action>
+      <form method="post">
+        <span>이벤트 제목 입력 : </span><input type="text" name="inputEventTitle"/>
+        <br/>
+          <span>프로모션 코드 수 입력 : </span><input type="text" name="inputPromotionNum"/>
+          <br/>
+          <span>할인율 입력 : </span><input type="text" name="inputSalePercent"/>
+          <br/>
+        <span>이벤트 내용 입력</span>
+        <input id="eventcontent" type="text" name="inputEventContent"/>
+        <button type="submit">이벤트 생성 및 프로모션 코드 생성</button>
+      </form>
+    </div>
+
+    <div class="container">
+        <!--진행중인 이벤트 목록 출력, 삭제 기능-->
+        <ul th:each="movieEvent : ${MovieEvents}">
+            <li>
+                <span th:text="${movieEvent.title}"></span>
+                <br/>
+                <p th:text="${movieEvent.content}"></p>
+                <a>
+                    이벤트 삭제
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

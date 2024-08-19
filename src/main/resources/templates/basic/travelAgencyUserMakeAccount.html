@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>여행사 유저 회원가입</title>
+    <style>
+
+        .container{
+        width : 500px;
+        margin : 100px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+      <form method="post" th:action>
+        <span>사용할 아이디 입력 : </span><input type="text" name="inputUserID">
+        <br/>
+        <span>사용할 비밀번호 입력 : </span><input type="password" name="inputUserPwd"/>
+        <br/>
+        <span>이름 입력 : </span><input type="text" name="inputUserName"/>
+        <br/>
+        <span>핸드폰 번호 입력 : </span><input type="text" name="inputUserPhoneNum"/>
+        <br/>
+        <span>이메일 입력 : </span><input type="text" name="inputUserEmail"/>
+        <br/>
+        <button>회원가입</button> &nbsp;&nbsp;
+          <a th:href="@{/basic/work-list/travelUserLogin}">로그인 페이지로</a>
+      </form>
+    </div>
+</body>
+</html>

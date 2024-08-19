@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 관리 페이지</title>
+
+    <style>
+        .container{
+          width : 500px;
+          margin : 50px auto;
+        }
+
+        .notify{
+          color : red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul th:each="thing : ${allThings}">
+            <li>
+                <span>ID : <span th:text="${thing.id}"></span></span>&nbsp;&nbsp;
+                <span>이름 : <span th:text="${thing.name}"></span></span>
+                <br/>
+                <ul th:each="reviews : ${reviewMap[thing.id]}">
+                    <li>
+                        <p th:text="${reviews.reviewContent}"></p>
+                        <a th:href="@{|/basic/work-list/deleteReview/${thing.id}/${reviews}|}">삭제</a>&nbsp;&nbsp;
+                        <a th:href="@{|/basic/work-list/hideReview/${thing.id}/${reviews}|}">숨김</a>&nbsp;&nbsp;
+                        <a th:href="@{|/basic/work-list/cancelHide/${thing.id}/${reviews}|}">숨김 취소</a>
+
+                    </li>
+                </ul>
+                <br/>
+
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

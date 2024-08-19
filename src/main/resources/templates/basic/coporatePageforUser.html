@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자용 페이지</title>
+
+  <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <ul th:each="project : ${unFinished}">
+
+            <li th:text="${project.getProjectName}"></li>
+
+        </ul>
+    </div>
+
+    <div class="container">
+      <a th:href="@{/basic/work-list/coporateOpenProjectUser}">프로젝트 열람</a>
+      <br/><br/>
+      <a th:href="@{/basic/work-list/coporateMakeTeam}">팀 나누기</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/coporateReportSubmit}">보고서 제출</a>
+        <br/><br/>
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>예매 창</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+
+        }
+
+        .alreadyReservate{
+           background-color : blue;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <h3>혼잡도 체크</h3>
+        <form method="get" th:action="@{/basic/work-list/congestion}">
+            <input type="hidden" name="movieTitle" th:value="${title}"/>
+            <span>관람 연도 입력 : </span> <input type="text" name="inputWatchYear"/>
+            <br/>
+            <span>관람 월 입력 : </span> <input type="text" name="inputWatchMonth"/>
+            <br/>
+            <span>관람 일 입력 : </span> <input type="text" name="inputWatchDay"/>
+            <br/>
+            <span>상영관 입력 : </span> <input type="text" name="inputRoomNumber"/>
+            <button type="submit">체크</button>
+        </form>
+        <p>남은 자리/총 자리</p>
+        <p th:text="${degree}?: _"></p>
+    </div>
+
+    <div class="container">
+
+        <span th:text="${title}"></span>
+        <br/>
+        상영시작 시간 : <span th:text="${#temporals.format(startTime, 'HH:mm')}"></span>
+        <br/>
+        <br/>
+        상영중인 관
+        <div th:each="room : ${room_numbers}">
+            <span th:text="|${room}관|"></span>&nbsp&nbsp
+
+        </div>
+        <br/>
+        <form method="post" th:action="@{/basic/work-list/movieReservate}">
+
+            <input type="hidden" name="movieTitle" th:value="${title}"/>
+
+            <span>관람 월 입력 : </span><input type="text" name="inputWatchMonth"/>
+            <br/>
+            <span>관람 일 입력 : </span><input type="text" name="inputWatchDay"/>
+            <br/>
+            <span>할인 코드 입력 : </span><input type="text" name="inputCode"/>
+            <br/>
+
+            <span>상영관 입력 : </span><input type="text" name="inputRoomNumber"/>
+            <br/>
+            <button type="submit">좌석 선택하기</button>
+        </form>
+
+    </div>
+</body>
+</html>

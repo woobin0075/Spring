@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유저 영화별 리뷰</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 25px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        .reviewDiv{
+          overflow : auto;
+        }
+     </style>
+</head>
+<body>
+    <div class="container">
+        영화 제목 : <span th:text="${movieTitle}"></span>
+      <br/>
+      <form method="post" th:action="@{/basic/work-list/movieReview}">
+        <input type="hidden" name="movieTitle" th:value="${movieTitle}"/>
+        <span>별접 입력 : </span><input type="text" name="inputStar" placeholder="1~5숫자 입력"/>
+        <br/>
+        <span>리뷰 입력 : </span><input type="text" name="inputReview" placeholder="30자 이내로 입력"/>
+        <br/>
+        <button type="submit">리뷰 등록</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <div class="reviewDiv">
+        <p>평점 : <span th:text="${reviewAvg}?: _"></span></p>
+        <ul th:each="movieReview : ${MovieReviews}">
+          <li>
+                <div>
+                    <span th:text="${movieReview.stars}"></span>
+                </div>
+              <div>
+                  <span th:text="${movieReview.review}"></span>
+              </div>
+              <br/>
+          </li>
+        </ul>
+      </div>
+    </div>
+</body>
+</html>

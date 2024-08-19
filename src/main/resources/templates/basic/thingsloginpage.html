@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 로그인 페이지</title>
+  <style>
+      .container{
+        margin : 50px auto;
+        width : 400px;
+      }
+  </style>
+</head>
+<body>
+      <div class="container">
+        <form method="post" th:action="@{/basic/work-list/thingsAdvisorlogin}">
+          <span>아이디 입력 : </span><input type="text" name="inputid"/>
+          <br/>
+          <span>비밀번호 입력 : </span><input type="password" name="inputpwd"/>
+          <br/>
+            <button type="submit">관리자 로그인</button>
+            <p th:text="${caution}?: _"></p>
+        </form>
+          <button th:onclick="|location.href='@{/basic/work-list/thingsAdvisorMakeAccount}'|">회원가입 이동</button>
+      </div>
+</body>
+</html>

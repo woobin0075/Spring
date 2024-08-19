@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영화관 관리자 전용 페이지</title>
+
+    <style>
+          .container{
+              width : 400px;
+              margin : 50px auto;
+          }
+
+          #alarm{
+           color : red;
+           font-size : 20px;
+          }
+      </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <h2>예고 영화 추가</h2>
+        <form method="post" th:action="@{/basic/work-list/addnoticemovie}">
+            <span>영화 제목 : </span> <input type="text" name="movietitle"/>
+            <br/>
+            <span>영화 개봉 년도 : </span> <input type="text" name="movieopenyear"/>
+            <br/>
+            <span>영화 개봉 월 : </span> <input type="text" name="movieopenmonth"/>
+            <br/>
+            <span>영화 개봉 일 : </span> <input type="text" name="movieopenday"/>
+            <br/>
+            <span>상영 시간(분단위) : </span> <input type="text" name="movietime"/>
+            <br/>
+            <span>상영 시작 시간 : </span> <input type="text" name="moviestarttimehour"/>
+            <br/>
+            <span>상영 시작 분 : </span> <input type="text" name="moviestarttimeminute"/>
+            <br/>
+            <span>총 좌석 수 : </span> <input type="text" name="movietotalsize"/>
+            <br/>
+            <span>영화 내림 년도 : </span> <input type="text" name="moviecloseyear"/>
+            <br/>
+            <span>영화 내림 월 : </span> <input type="text" name="movieclosemonth"/>
+            <br/>
+            <span>영화 내림 일 : </span> <input type="text" name="moviecloseday"/>
+            <br/>
+            <span>입장권 가격 : </span> <input type="text" name="movieprice"/>
+            <br/>
+            <button type="submit">예고 영화 등록</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>상영중인 영화 추가</h2>
+        <form method="post" th:action="@{/basic/work-list/addmovie}">
+            <span>영화 제목 : </span> <input type="text" name="movietitle"/>
+            <br/>
+            <span>영화 개봉 년도 : </span> <input type="text" name="movieopenyear"/>
+            <br/>
+            <span>영화 개봉 월 : </span> <input type="text" name="movieopenmonth"/>
+            <br/>
+            <span>영화 개봉 일 : </span> <input type="text" name="movieopenday"/>
+            <br/>
+            <span>상영 시간(분단위) : </span> <input type="text" name="movietime"/>
+            <br/>
+            <span>상영 시작 시간 : </span> <input type="text" name="moviestarttimehour"/>
+            <br/>
+            <span>상영 시작 분 : </span> <input type="text" name="moviestarttimeminute"/>
+            <br/>
+            <span>총 좌석 수 : </span> <input type="text" name="movietotalsize"/>
+            <br/>
+            <span>영화 내림 년도 : </span> <input type="text" name="moviecloseyear"/>
+            <br/>
+            <span>영화 내림 월 : </span> <input type="text" name="movieclosemonth"/>
+            <br/>
+            <span>영화 내림 일 : </span> <input type="text" name="moviecloseday"/>
+            <br/>
+            <span>입장권 가격 : </span> <input type="text" name="movieprice"/>
+            <br/>
+            <span>상영관 번호 입력 : </span> <input type="text" name="roomNumber"/>
+            <br/>
+            <button type="submit">영화 등록</button>
+        </form>
+        <button th:onclick="|location.href='@{/basic/work-list/movielistpageforadvisor}'|">상영 영화 페이지 이동</button>
+        &nbsp&nbsp
+        <a th:href="@{|/basic/work-list/movieEvent|}">이벤트 페이지 이동</a>
+    </div>
+</body>
+</html>

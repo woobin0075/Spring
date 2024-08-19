@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 프로젝트 참가 페이지</title>
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <p id="alarm" th:text="${alarm}?: _"></p>
+  </div>
+
+  <div class="container">
+    <form method="post" th:action>
+      <span>프로젝트 이름 : </span><input type="text" name="inputProjectName"/>
+        <br/>
+      <span>참여시킬 사용자의 아이디 : </span><input type="text" name="inputUserID"/>
+      <br/>
+      <button type="submit">참여 등록</button> &nbsp;&nbsp; <a th:href="@{/basic/work-list/coporatePageforAdvisor}">이전 페이지로</a>
+    </form>
+  </div>
+</body>
+</html>

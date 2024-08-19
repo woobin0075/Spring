@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 수정 및 제거</title>
+  <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+      <h3>프로젝트 정보 수정</h3>
+      <form method="get" th:action="@{/basic/work-list/coporateProjectModifyAndRemove/modify}">
+        <span>담당하는 프로젝트 이름 입력 : </span><input type="text" name="inputProjectName"/>
+        <br/>
+        <span>수정할 등급 입력 : </span><input type="text" name="inputGrade"/>
+        <br/>
+        <span>수정할 프로젝트 이름 입력 : </span><input type="text" name="inputNewProjectName"/>
+        <br/>
+        <button type="submit">수정</button>
+      </form>
+      &nbsp;&nbsp;
+      <a th:href="@{/basic/work-list/coporatePageforAdvisor}">이전 페이지로</a>
+    </div>
+
+    <div class="container">
+        <h3>프로젝트 진행도 수정</h3>
+        <form method="get" th:action="@{/basic/work-list/coporateProgressModify}">
+            <span>담당하는 프로젝트 이름 입력 : </span><input type="text" name="inputProjectName"/>
+            <br/>
+            <span>수정할 진행도 입력 : </span><input type="text" name="inputProgress"/>
+            <br/>
+            <button type="submit">수정</button>
+        </form>
+    </div>
+
+    <div class="container">
+      <h3>프로젝트 완전 삭제</h3>
+      <form method="get" th:action="@{/basic/work-list/coporateProjectModifyAndRemove/remove}">
+        <span>담당하는 프로젝트 이름 입력 : </span><input type="text" name="inputProjectName"/>
+        <br/>
+        <button type="submit">삭제</button>
+      </form>
+    </div>
+</body>
+</html>

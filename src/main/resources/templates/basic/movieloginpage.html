@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영화관 관람객 로그인 화면</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <form method="post" th:action>
+            <div>
+                <span>아이디 입력 : </span><input type="text" name="inputUserId" />
+            </div>
+            <div>
+                <span>비밀번호 입력 : </span><input type="password" name="inputUserPwd" />
+            </div>
+
+            <button type="submit">로그인 </button>
+        </form>
+        <button th:onclick="|location.href='@{/basic/work-list/movieusermakeaccount}'|">회원가입</button>
+    </div>
+</body>
+</html>

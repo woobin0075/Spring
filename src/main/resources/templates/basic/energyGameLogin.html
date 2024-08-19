@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>에너지 게임 로그인</title>
+
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+      <form method="get" th:action="@{/basic/work-list/energyGameLogin/login}">
+        <span>아이디 : </span><input type="text" name="inputID"/>
+        <br/>
+        <span>비밀번호 입력 : </span><input type="password" name="inputPwd"/>
+        <br/>
+        <button type="submit">로그인</button>&nbsp;&nbsp;
+        <a th:href="@{/basic/work-list/energyGameMakeAccount}">회원가입</a>
+      </form>
+    </div>
+</body>
+</html>

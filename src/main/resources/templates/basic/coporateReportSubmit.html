@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>보고서 제출</title>
+
+  <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+
+        #reportText{
+         width : 200px;
+         height : 250px;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <p id="alarm" th:text="${alarm}?: _"></p>
+  </div>
+
+  <div class="container">
+    <form method="post" th:action>
+      <span>프로젝트 이름 입력 : </span><input type="text" name="inputProjectName"/>
+      <br/>
+      <span>소속 팀 이름 입력 : </span><input type="text" name="inputTeamName"/>
+      <br/>
+      <span>보고서 내용 입력 : </span><input type="text" id="reportText" name="inputText"/>
+      <br/>
+      <button type="submit">제출</button> &nbsp;&nbsp; <a th:href="@{/basic/work-list/coporatePageforUser}">이전 페이지로</a>
+    </form>
+  </div>
+
+</body>
+</html>

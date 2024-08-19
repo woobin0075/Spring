@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>주거 지역 추가</title>
+
+  <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+
+        .city{
+            border : 1px solid blue;
+            padding : 10px;
+        }
+
+        .zone{
+            border : 1px solid yellow;
+            padding : 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <h3>현재 인구 분포도</h3>
+        <div class="city" th:each="city, cityStat : ${cities}">
+
+            <span th:text="|${cityStat.count}번 도시|"></span>
+            <div class="zone" th:each="zone, zoneStat : ${city.zones}">
+
+                <span th:text="|${zoneStat.count}번 구역|"></span>&nbsp;&nbsp;
+                <span th:text="|주거지역 ${zone.getResidantArea}|"></span>
+                <p th:text="${zone.getPersonNum}"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <form method="post" th:action>
+            <span>도시 번호 입력 : </span><input type="text" name="inputCityNum"/>
+            <br/>
+            <span>구역 번호 입력 : </span><input type="text" name="inputZoneNum"/>
+            <br/>
+            <button type="submit">추가</button>&nbsp;&nbsp;
+            <a th:href="@{/basic/work-list/energyGamePlay}">이전 페이지로</a>
+        </form>
+    </div>
+</body>
+</html>

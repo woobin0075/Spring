@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자용 프로젝트 열람</title>
+
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <form method="get" th:action="@{/basic/work-list/coporateOpenProjectUser/find}">
+            <span>프로젝트 이름 : </span><input type="text" name="inputProjectName"/>
+            <br/>
+            <button type="submit">검색</button>&nbsp;&nbsp; <a th:href="@{/basic/work-list/coporatePageforUser}">이전 페이지로</a>
+        </form>
+
+    </div>
+
+    <div class="container">
+        <p th:text="${info}?: _"></p>
+    </div>
+</body>
+</html>

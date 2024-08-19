@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영화관 매출 보고서</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+
+        }
+
+        .salediv{
+            height : 450px;
+            overflow : auto;
+        }
+     </style>
+</head>
+<body>
+
+      <div class="container">
+          <h2>일일 매출</h2>
+          <div class = "salediv">
+              <ul th:each="daysale : ${daySales}">
+                  <li>
+                      <span th:text='|${daysale.year}년|'></span>&nbsp<span th:text='|${daysale.month}월|'></span>
+                      &nbsp<span th:text='|${daysale.day}일|'></span>&nbsp&nbsp<span th:text='|${daysale.totalSale}|'></span>
+                      <br/>
+
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+        <div class="container">
+            <h2>월 매출</h2>
+            <div class = "salediv">
+                <ul th:each="monthsale : ${monthSales}">
+                    <li>
+                        <span th:text="|${monthsale.year}년|"></span>&nbsp<span th:text='|${monthsale.month}월|'></span>
+                        &nbsp&nbsp<span th:text='|${monthsale.totalsale}|'></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+      <div class="container">
+          <h2>연 매출</h2>
+          <div class = "salediv">
+              <ul th:each="yearsale : ${yearSales}">
+                  <li>
+                      <span th:text="|${yearsale.year}년|"></span>&nbsp&nbsp<span th:text='|${yearsale.totalsale}|'></span>
+                  </li>
+              </ul>
+          </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상영관 추가 페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+
+     </style>
+
+</head>
+<body>
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <p>현재 상영관</p>
+        <div th:each="room : ${room_numbers}">
+            <span th:text="|${room}관|"></span>&nbsp&nbsp
+        </div>
+        <br/>
+        <form method="post" th:action="@{/basic/work-list/addMovieRoom}">
+            <input type="hidden" th:value="${title}" name="movieTitle"/>
+            상영관 입력 : <input type="text" name="inputMovieRoom"/>
+            <button type="submit">상영할 관 추가</button>
+            <br/>
+            <a th:href="@{|/basic/work-list/movielistpageforadvisor|}">영화 목록 페이지 이동</a>
+        </form>
+    </div>
+</body>
+</html>

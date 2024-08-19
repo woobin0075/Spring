@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영화 좌석 선택하기</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        .alreadyReservate{
+           background-color : blue;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+
+        a{
+          border : 1px solid black;
+        }
+
+        .reservation{
+          background-color : yellow;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <span th:text="${title}"></span>
+        <br/>
+        상영시작 시간 : <span th:text="${#temporals.format(startTime, 'HH:mm')}"></span>
+        <br/>
+        관람 날짜 : <span th:text="|${watchMonth}월 |"></span><span th:text="|${watchDay}일|"></span>
+        <br/>
+        <ul th:each="seat : ${MovieSeats}">
+            <li>
+                <input type="hidden" name="movieRoomNum" th:value="${movieRoom}">
+                <input type="hidden" name="seatRow" th:value="${seat.row}"/>
+                <input type="hidden" name="seatCol" th:value="${seat.col}">
+                <a th:text="|${seat.row}행 ${seat.col}열 예매|"
+                   th:href="@{|/basic/work-list/movieSeatReservate/${title}/${watchMonth}/${watchDay}/${seat.row}/${seat.col}/${movieRoom}|}"
+                   th:classappend="${seat.reservated} ? 'reservation' : ''"
+                >예매하기</a>
+            </li>
+        </ul>
+        <!--좌석 랜덤 선택-->
+        <a th:href="@{|/basic/work-list/movieSeatReservate/${title}/${watchMonth}/${watchDay}/${movieRoom}|}">좌석 랜덤 선택</a>&nbsp&nbsp
+        <a th:href="@{|/basic/work-list/moviemainpage|}">메인페이지 이동</a>
+    </div>
+</body>
+</html>

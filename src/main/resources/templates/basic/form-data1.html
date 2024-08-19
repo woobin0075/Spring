@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h3 {
+      color: #333;
+    }
+
+    .container {
+      background-color: white;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .person {
+      background-color: #ffffff;
+      border: 1px solid #e1e1e1;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .person p {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .person span {
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .person {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <h1>Basic, List, Map Representation</h1>
+    <div class="person">
+        <h3>Object Method</h3>
+        <p>First person's name is <span th:text="${dataTest1.userName}">Name</span> and age is <span th:text="${dataTest1.age}">Age</span>.</p>
+        <p>Second person's name is <span th:text="${dataTest2.userName}">Name</span> and age is <span th:text="${dataTest2.age}">Age</span>.</p>
+        <p>Third person's name is <span th:text="${dataTest3.userName}">Name</span> and age is <span th:text="${dataTest3.age}">Age</span>.</p>
+    </div>
+
+    <div class="person">
+        <h3>List Method</h3>
+        <p>First person's name is <span th:text="${dataTests[0].userName}">Name</span> and age is <span th:text="${dataTests[0].age}">Age</span>.</p>
+        <p>Second person's name is <span th:text="${dataTests[1].userName}">Name</span> and age is <span th:text="${dataTests[1].age}">Age</span>.</p>
+        <p>Third person's name is <span th:text="${dataTests[2].userName}">Name</span> and age is <span th:text="${dataTests[2].age}">Age</span>.</p>
+    </div>
+
+    <div class="person">
+        <h3>Map Method</h3>
+        <p>First person's name is <span th:text="${dataTestMap['dataTest1'].userName}">Name</span> and age is <span th:text="${dataTestMap['dataTest1'].age}">Age</span>.</p>
+        <p>Second person's name is <span th:text="${dataTestMap['dataTest2'].userName}">Name</span> and age is <span th:text="${dataTestMap['dataTest2'].age}">Age</span>.</p>
+        <p>Third person's name is <span th:text="${dataTestMap['dataTest3'].userName}">Name</span> and age is <span th:text="${dataTestMap['dataTest3'].age}">Age</span>.</p>
+    </div>
+
+    <hr>
+    <h1>Let's use local variables.</h1>
+    <div class="local-vars" th:with="test1=${dataTests[0]}, test2=${dataTests[1]}, test3=${dataTests[2]}">
+        <p>First person's name : <span th:text="${test1.userName}"></span></p>
+        <p>Second person's name : <span th:text="${test2.userName}"></span></p>
+        <p>Third person's name : <span th:text="${test3.userName}"></span></p>
+        <br/>
+        <p>First person's age : <span th:text="${test1.age}"></span></p>
+        <p>Second person's age : <span th:text="${test2.age}"></span></p>
+        <p>Third person's age : <span th:text="${test3.age}"></span></p>
+    </div>
+
+</div>
+</body>
+</html>

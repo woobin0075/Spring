@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상영 시간 수정 페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+         #alarm{
+           color : red;
+           font-size : 20px;
+          }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+      <form method="post" th:action>
+        영화 제목  : <input type="text" name="inputMovieTitle"/>
+        <br/>
+        수정할 시간 : <input type="text" name="inputHour">
+        <br/>
+        수정할 분 : <input type="text" name="inputMinute">
+        <br/>
+        <button type="submit">시간 수정</button>
+      </form>
+        <button th:onclick="|location.href='@{/basic/work-list/movielistpageforadvisor'}">
+            영화 목록 페이지 이동
+        </button>
+    </div>
+</body>
+</html>

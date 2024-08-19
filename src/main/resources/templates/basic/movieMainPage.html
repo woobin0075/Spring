@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영화관 메인 페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 40px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <h3>오늘 날짜</h3>
+        <p th:text="|${session.todayYear}년 ${session.todayMonth}월 ${session.todayDay}일|"></p>
+        <a th:href="@{|/basic/work-list/movieNextDay|}">다음날로</a>
+    </div>
+
+    <div class="container">
+        <a th:href="@{|/basic/work-list/moviemypage|}">예매 목록 확인</a>
+    </div>
+
+    <div class="container">
+        <ul th:each="movieEvent : ${MovieEvents}">
+            <li>
+                <span th:text="${movieEvent.title}"></span>
+                <br/>
+                <p th:text="${movieEvent.content}"></p>
+                <a th:href="@{|/basic/work-list/moviemypage/getcode/${movieEvent.id}|}">
+                    할인 코드 받기
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>예고 영화</h2>
+        <ul th:each="movie : ${allNoticeMovies}">
+            <li>
+                <span th:text="${movie.movie_title}"></span>
+                <br/>
+                개봉일 : <span th:text="${movie.opendate}"></span>
+                <br/>
+                상영시작 시간 : <span th:text="${#temporals.format(movie.movie_start, 'HH:mm')}"></span>
+                <br/>
+                남은 좌석 수 : <span th:text="${movie.totalsize}"></span>
+                <br/>
+                입장권 가격 : <span th:text="${movie.price}"></span>
+                <br/>
+                상영 시간 : <span th:text="${movie.time}"></span>
+                <br/>
+                영화 마지막 상영일 : <span th:text="${movie.closedate}"></span>
+                <br/>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>상영 영화</h2>
+        <form method="post" th:action="@{/basic/work-list/moviemainpage}">
+            영화 제목 입력 : <input type="text" name="inputMovieTitle"/>&nbsp&nbsp
+            <button type="submit">검색</button>
+        </form>
+
+        <ul th:each="movie : ${allMovies}">
+            <li>
+                <span th:text="${movie.movie_title}"></span>
+                <br/>
+                개봉일 : <span th:text="${movie.opendate}"></span>
+                <br/>
+                상영시작 시간 : <span th:text="${#temporals.format(movie.movie_start, 'HH:mm')}"></span>
+                <br/>
+                남은 좌석 수 : <span th:text="${movie.totalsize}"></span>
+                <br/>
+                입장권 가격 : <span th:text="${movie.price}"></span>
+                <br/>
+                상영 시간 : <span th:text="${movie.time}"></span>
+                <br/>
+                <a th:href="@{|/basic/work-list/movieReservate/${movie.movie_title}|}">
+                    예매하기
+                </a>
+                &nbsp&nbsp
+                <a th:href="@{|/basic/work-list/movieReview/${movie.movie_title}|}">
+                  리뷰 페이지
+                </a>
+                <br/>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

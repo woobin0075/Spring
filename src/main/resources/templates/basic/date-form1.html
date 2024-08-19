@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Time and Date Display</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #007bff;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #e9ecef;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        .explanation {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .highlight {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>현재 시간 및 날짜 상세 정보</h1>
+    <ul>
+        <li>
+            <span th:text="${#temporals.format(localDateTime,'yyyy년 MM월 dd일')}">2023년 04월 01일</span>, <span th:text="${#temporals.dayOfWeekName(localDateTime)}">토요일</span>
+            <div class="explanation">오늘 날짜와 요일을 확인해보세요.</div>
+        </li>
+        <li>
+            현재 시간은 <span class="highlight" th:text="${#temporals.format(localDateTime,'HH시 mm분 ss초')}">15시 20분 45초</span> 입니다.
+            <div class="explanation">하루 중 이 시간을 어떻게 보낼지 계획해보세요.</div>
+        </li>
+    </ul>
+    <h2>시간 및 날짜 디테일</h2>
+    <ul>
+        <li>
+            지금은 <span th:text="${#temporals.monthName(localDateTime)}">4월</span>, <span th:text="${#temporals.day(localDateTime)}">1일</span>이며, <span th:text="${#temporals.year(localDateTime)}">2023</span>년 입니다.
+            <div class="explanation">해당 월/일/년도로 중요한 기념일이 있는지 확인해보세요.</div>
+        </li>
+        <li>
+            현재 시각은 정확히 <span class="highlight" th:text="${#temporals.hour(localDateTime)}">15시</span> <span class="highlight" th:text="${#temporals.minute(localDateTime)}">20분</span> <span class="highlight" th:text="${#temporals.second(localDateTime)}">45초</span> 입니다.
+            <div class="explanation">시간은 항상 흐릅니다. 가치 있는 일에 사용해봅시다 ^^</div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

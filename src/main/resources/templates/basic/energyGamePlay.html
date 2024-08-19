@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게임 선택 및 결과</title>
+
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 40px;
+        }
+
+        .status{
+         color : red;
+         font-size : 25px;
+        }
+
+        .status2{
+         color : red;
+         font-size : 45px;
+        }
+
+        #rule{
+         border : 5px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="rule" class="container">
+        <p>당신은 도시의 에너지 관리자입니다. 도시는 여러 구역으로 나뉘어 있으며, 각 구역은 에너지를 생산하거나 소비합니다</p>
+        <p>도시 하나당 4개의 구역이 자동으로 할당 됩니다.</p>
+        <p>구역은 기본적으로 최대 인구 4까지만 수용 가능합니다.</p>
+        <p>구역에 주거 지역을 늘릴수록 인구2씩 추가 수용 가능합니다.</p>
+        <p>발전소는 태양광, 화석 연료, 수력, 풍력 4개가 있습니다.</p>
+        <p>처음엔 태양광 에너지 발전소 하나가 자동으로 주어집니다.</p>
+        <p>12턴 기준으로 다음과 같은 행동이 가능합니다.</p>
+        <p>도시 생성은 모든 턴에 가능합니다.</p>
+        <p>1~3턴에 에너지를 생산할 수 있습니다.</p>
+        <p>4~6턴에 인구 유입이 가능하며 인구 유입시 바로 에너지가 소비 됩니다.</p>
+        <p>7턴에서만 세금을 징수할 수 있습니다.</p>
+        <p>8,9턴에 발전소를 건설할 수 있습니다.</p>
+        <p>모든 발전소는 2원에 구매가능합니다.</p>
+        <p>10~12턴에 주거단지 건설, 상업센터 건설이 가능합니다.</p>
+        <p>마지막 12턴 끝나고 환경 지표랑 hp 0미만 파산합니다.</p>
+        <p>통과 클릭시 턴만 증가</p>
+    </div>
+
+<!--    <div class="status2 container" th:if="${param.playerStatus}" th:text="'파산합니다.'"></div>-->
+
+    <div class="container">
+
+        <h2>현재 상태</h2>
+        <span>현재 턴 : </span><span th:text="${player.turn}"></span>
+        <br/>
+        <span>hp : </span><span th:text="${player.getEnergyPool}"></span>
+        <br/>
+        <span>도시 수 : </span><span th:text="${player.cities.size()}"></span>
+        <br/>
+        <span>인구 수 : </span><span th:text="${player.population}"></span>
+        <br/>
+        <span>환경 영향 지표 : </span><span th:text="${player.totalEnvironmentEffect}"></span>
+        <br/>
+        <span>에너지 발전소 수 : </span><span th:text="${player.energyBuildingsNum}"></span>
+        <br/>
+        <span>화석 연료 발전소 수 : </span><span th:text="${player.fossilFuelEnergyPlantsNum}"></span>
+        <br/>
+        <span>태양광 발전소 수 : </span><span th:text="${player.sunshineEnergyPlantsNum}"></span>
+        <br/>
+        <span>풍력 발전소 수 : </span><span th:text="${player.windEnergyPlantsNum}"></span>
+        <br/>
+        <span>수력 발전소 수 : </span><span th:text="${player.waterEnergyPlantsNum}"></span>
+        <br/>
+        <span>상업 센터 수 : </span><span th:text="${player.commercialCentersNum}"></span>
+        <br/>
+        <span>세금 : </span><span th:text="${player.getTax}"></span>
+        <br/>
+    </div>
+
+    <div class="container">
+
+        <div class="status" th:if="${param.status}" th:text="'아직 인구 유입 가능 턴이 아닙니다.'"></div>
+        <div class="status" th:if="${param.status2}" th:text="'아직 세금 징수가 안됩니다.'"></div>
+        <div class="status" th:if="${param.status3}" th:text="'에너지 생산 가능 턴이 아닙니다.'"></div>
+        <div class="status" th:if="${param.status4}" th:text="'발전소 건설 턴이 아닙니다.'"></div>
+        <div class="status" th:if="${param.status5}" th:text="'주거단지 건설 턴이 아닙니다.'"></div>
+        <div class="status" th:if="${param.status6}" th:text="'상업센터 건설 턴이 아닙니다.'"></div>
+        <div class="status" th:if="${param.status7}" th:text="'유지비용 지불 턴이 아닙니다.'"></div>
+        <div>
+            <p id="alarm" th:text="${alarm}?: _"></p>
+        </div>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/addCity}">도시 생성</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/addEnergyBuilding}">에너지 발전소 구현</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/saveEnergy}">에너지 생산 및 저장</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGameAddPerson}">인구 늘리기</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGameTax}">세금 징수</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/addResidentArea}">주거 단지 건설</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/addCommercialCenter}">상업 센터 건설</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/payCost}">유지 비용 지불</a>
+        <br/><br/>
+        <a th:href="@{/basic/work-list/energyGamePlay/pass}">통과</a>
+    </div>
+</body>
+</html>

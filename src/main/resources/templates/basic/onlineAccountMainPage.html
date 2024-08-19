@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>온라인 계좌 메인 페이지</title>
+</head>
+<style>
+    .container{
+        width : 500px;
+        margin : 50px auto;
+        text-align : center;
+    }
+
+    button{
+        background-color : green;
+        width : 80px;
+        text-align : center;
+        padding : 10px auto;
+        margin : 10px;
+    }
+</style>
+<body>
+  <div class="container">
+      <div>
+          <a th:href="@{|/basic/work-list/accountlogin/mainpage/${session.userDBid}|}">계좌조회</a>
+          <p th:text="${nowUserMoney}">asdfsdf</p>
+          <p th:text="${confirmMsg}">asdfsadf</p>
+      </div>
+      <form method="post" th:action="@{/basic/work-list/accountlogin/mainpage/inputrequest}">
+          <input type="text" name = "inputMoney"
+          placeholder="입금할 돈 입력">
+          <button type="submit">입금</button>
+      </form>
+      <form method="post" th:action="@{/basic/work-list/accountlogin/mainpage/outputrequest}">
+          <input type="text" name = "outputMoney"
+                 placeholder="출금할 돈 입력">
+          <button>출금</button>
+          <p th:text="${alarm}?: _"></p>
+      </form>
+  </div>
+</body>
+</html>

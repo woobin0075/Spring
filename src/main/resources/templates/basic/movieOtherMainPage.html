@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>경쟁사 영화관 홈페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        .movies{
+           height : 300px;
+           overflow : auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 th:text="${Theator}"></h2>
+    </div>
+
+    <div class="container">
+        <span th:text="${movieEvent.title}"></span>
+        <br/>
+        <p th:text="${movieEvent.content}"></p>
+        <a href="#none">
+            할인 코드 받기
+        </a>
+    </div>
+
+    <div class="container">
+        <h2>상영 영화</h2>
+
+        <div class="movies">
+            <ul th:each="movie : ${allMovies}">
+                <span th:text="${movie.movie_title}"></span>
+                <br/>
+                개봉일 : <span th:text="${movie.opendate}"></span>
+                <br/>
+                상영시작 시간 : <span th:text="${#temporals.format(movie.movie_start, 'HH:mm')}"></span>
+                <br/>
+                남은 좌석 수 : <span th:text="${movie.totalsize}"></span>
+                <br/>
+                입장권 가격 : <span th:text="${movie.price}"></span>
+                <br/>
+                상영 시간 : <span th:text="${movie.time}"></span>
+                <br/>
+                <a href="#none">
+                    예매하기
+                </a>
+                &nbsp&nbsp
+                <a href="#none">
+                    리뷰 페이지
+                </a>
+                <br/>
+
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자용 리뷰 페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        .reviewDiv{
+          overflow : auto;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        영화 제목 : <span th:text="${movieTitle}"></span>
+        <br/>
+        <div class="reviewDiv">
+            <ul th:each="movieReview : ${MovieReviews}">
+                <li>
+                    <div>
+                        <span th:text="${movieReview.stars}"></span>
+                    </div>
+                    <div>
+                        <span th:text="${movieReview.review}"></span>
+                    </div>
+
+                    <a th:href="@{|/basic/work-list/movieReviewAdvisor/delete/${movieTitle}/${movieReview.review}|}">삭제</a>
+                    <br/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

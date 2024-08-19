@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 상세 페이지</title>
+    <style>
+        .container{
+            margin : 50px auto;
+            width : 600px;
+        }
+
+        #id{
+           font-size : 50px;
+           color : red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <p id="notify" th:text="${notify}?: _"></p>
+
+        <p>
+            <span>이름 : </span> <span th:text="${thingName}"></span>
+            <span>내용 : </span> <span th:text="${thingContent}"></span>
+        </p>
+        <h2>리뷰 목록</h2>
+        <div>
+            <ul th:each="review : ${thingReviews}">
+                <li th:text="${review.reviewContent}"></li>&nbsp;
+                <span th:text="${review.star}"></span>
+                <div>
+                    <span th:text="${#temporals.format(review.reviewtime, 'yyyy-MM-dd HH:mm')}"></span>
+                </div>
+
+            </ul>
+            <form name="reviewForm" method="post" th:action="@{/basic/work-list/viewthings/addreview}">
+                <input type="hidden" th:value="${thingID}" name="id">
+                리뷰 작성 : <input name="reviewname"/><br/>
+                별점 : <input name="starnum" placeholder="1점~5점이하 입력">
+                <button type="submit">리뷰 등록</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

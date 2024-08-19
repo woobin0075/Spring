@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <style type="text/css">
+.work-add{
+    color:#333;
+    text-decoration: none;
+    border:1px solid black;
+    width:120px;
+    display:inline-block;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.5s;
+    float:right;
+}
+.work-add:hover{
+    background-color: red;
+    color:white;
+}
+.main-form{
+	margin:0 auto;
+	width:80%;
+	height:100%;
+	min-width: 900px;
+}
+.content-box{
+	position: relative;
+	margin:30px auto;
+	width:50%;
+	height: 50px;
+	min-width: 600px;
+}
+.title-text{
+	width:80%;
+	height:auto;
+	margin:0 auto;
+	text-align: center;
+	font-size:30px;
+	font-weight: bold;
+}
+.content-title{
+	font-size: 17px;
+	width:80%;
+}
+.content-address{
+	font-size: 13px;
+	width:80%;
+}
+.content-pay{
+	position: absolute;
+	width: 150px;
+	height: 100%;
+	text-align: left;
+	font-size: 17px;
+	float: right;
+	left:100%;
+}
+</style>
+</head>
+<body>
+<div class="main-form">
+  <div class="title-text">
+    <i>알바는 Min 천국</i>
+  </div>
+
+  <a class="work-add" href="add-work.html" th:href="@{/html/add-work.html}">공고 등록</a>
+
+  <div class="content-box" th:each="work : ${works}">
+    <hr>
+    <div class="content-pay" th:text="${work.pay}">
+      급여 :
+    </div>
+    <div class="content-title">
+<!--      <a href="detail-page.html" th:href="@{basic/works/{workId}(workId=${work.id})}" th:text="${work.workName}">공고명</a>-->
+      <a href="detail-page.html" th:href="@{|work-list/${work.id}|}" th:text="${work.workName}">공고명</a>
+    </div>
+    <div class="content-address" th:text="${work.workAddress}">
+      공고 주소
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

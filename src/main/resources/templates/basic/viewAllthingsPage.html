@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 목록 조회 화면</title>
+
+    <style>
+      .container{
+        border : 1px solid black;
+        margin : 50px auto;
+        width : 600px;
+        height : 480px;
+        padding : 8px;
+        overflow : auto;
+      }
+
+      ul{
+       list-style-type : none;
+      }
+
+      li{
+        border : 1px solid red;
+        padding : 6px;
+      }
+
+      .detailpage{
+        font-size : 20px;
+      }
+
+      .inputsearch{
+        width : 250px;
+        height : 23px;
+      }
+
+    </style>
+</head>
+<body>
+  <div class="container">
+      <form method="post" th:action>
+          <span>물품 이름 혹은 내용 검색 : </span> <input class="inputsearch" type="text" name="search"/>
+      </form>
+    <ul th:each="thing : ${allThings}">
+      <li>
+        <span>물품 이름 : <span th:text="${thing.name}"></span></span>
+          <br/>
+          <span>내용</span>
+          <p th:text="${thing.content}"></p>
+          <a href="rewriteThingPage.html" th:href="@{|/basic/work-list/updateinfo/${thing.id}|}">물품 정보 수정</a>
+          <a class="detailpage" href="thingDetailPage.html" th:href="@{|/basic/work-list/viewthings/${thing.id}|}">상세페이지</a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>협력작업 웹 개발 로그인</title>
+
+    <style>
+      .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+
+  <div class="container">
+    <p id="alarm" th:text="${alarm}?: _"></p>
+  </div>
+
+  <div class="container">
+    <h6>관리자용 로그인 및 회원가입</h6>
+    <form method="get" th:action="@{/basic/work-list/coporateLogin/AdvisorLogin}">
+      <span>아이디 : </span><input type="text" name="inputAdvisorID"/>
+      <br/>
+      <span>비밀번호 : </span><input type="password" name="inputAdvisorPwd"/>
+      <br/>
+      <button type="submit">로그인</button> &nbsp;&nbsp; <a th:href="@{/basic/work-list/coporateAdvisor}">회원가입</a>
+    </form>
+  </div>
+
+  <div class="container">
+    <h6>사용자용 로그인 및 회원가입</h6>
+    <form method="get" th:action="@{/basic/work-list/coporateLogin/UserLogin}">
+      <span>아이디 : </span><input type="text" name="inputUserID"/>
+      <br/>
+      <span>비밀번호 : </span><input type="password" name="inputUserPwd"/>
+      <br/>
+      <button type="submit">로그인</button> &nbsp;&nbsp; <a th:href="@{/basic/work-list/coporateUser}">회원가입</a>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 마감기한 설정</title>
+
+  <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <p id="alarm" th:text="${alarm}?: _"></p>
+  </div>
+
+  <div class="container">
+    <form method="post" th:action>
+      <h3>프로젝트 마감 날짜 설정</h3>
+      <span>담당 프로젝트 이름 : </span><input type="text" name="inputProjectName"/>
+      <br/>
+      <span>연도 입력 : </span><input type="text" name="inputYear"/>
+      <br/>
+      <span>월 입력 : </span><input type="text" name="inputMonth"/>
+      <br/>
+      <span>일 입력 : </span><input type="text" name="inputDay"/>
+      <br/>
+      <button type="submit">설정</button>&nbsp;&nbsp;
+      <a th:href="@{/basic/work-list/coporatePageforAdvisor}">이전 페이지로</a>
+    </form>
+  </div>
+
+</body>
+</html>

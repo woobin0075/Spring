@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 전용 영화 목록 페이지</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p th:text="${winText}?: _"></p>
+        <ul th:each="theator, state : ${winTheators}">
+            <span th:text="|${state.index+1}등 ${theator.name}|"></span>
+            <br/>
+        </ul>
+    </div>
+
+    <div class="container">
+        <span>누적 매출액 : </span> <span th:text="${accSale}"></span>
+
+        <a th:href="@{|/basic/work-list/saleReport|}">매출 확인</a>
+    </div>
+
+    <div class="container">
+        <h2>예고 영화</h2>
+        <ul th:each="movie : ${allNoticeMovies}">
+            <li>
+                <span th:text="${movie.movie_title}"></span>
+                <br/>
+                개봉일 : <span th:text="${movie.opendate}"></span>
+                <br/>
+                상영시작 시간 : <span th:text="${#temporals.format(movie.movie_start, 'HH:mm')}"></span>
+                <br/>
+                남은 좌석 수 : <span th:text="${movie.totalsize}"></span>
+                <br/>
+                입장권 가격 : <span th:text="${movie.price}"></span>
+                <br/>
+                상영 시간 : <span th:text="${movie.time}"></span>
+                <br/>
+                영화 마지막 상영일 : <span th:text="${movie.closedate}"></span>
+                <br/>
+
+                <a th:href="@{|/basic/work-list/deleteNoticeMovie/${movie.movie_title}|}">
+                    삭제
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>상영 중인 영화</h2>
+      <ul th:each="movie : ${allMovies}">
+          <li>
+              <span th:text="${movie.movie_title}"></span>
+              <br/>
+              개봉일 : <span th:text="${movie.opendate}"></span>
+              <br/>
+              상영시작 시간 : <span th:text="${#temporals.format(movie.movie_start, 'HH:mm')}"></span>
+              <br/>
+              남은 좌석 수 : <span th:text="${movie.totalsize}"></span>
+              <br/>
+              입장권 가격 : <span th:text="${movie.price}"></span>
+              <br/>
+              상영 시간 : <span th:text="${movie.time}"></span>
+              <br/>
+              영화 마지막 상영일 : <span th:text="${movie.closedate}"></span>
+              <br/>
+
+              <a th:href="@{|/basic/work-list/addMovieRoom/${movie.movie_title}|}">
+                  상영관 추가
+              </a>
+              &nbsp&nbsp
+              <a th:href="@{|/basic/work-list/deleteMovie/${movie.movie_title}|}">
+                  삭제
+              </a>
+              &nbsp&nbsp
+              <a th:href="@{|/basic/work-list/movieReviewAdvisor/${movie.movie_title}|}">
+                  리뷰 페이지 이동
+              </a>
+
+          </li>
+      </ul>
+        <button th:onclick="|location.href='@{/basic/work-list/movieUpdateTime}'|">
+            상영시간 수정
+        </button>
+        <button th:onclick="|location.href='@{/basic/work-list/movieUpdatePrice}'|">
+            가격 수정
+        </button>
+
+    </div>
+</body>
+</html>

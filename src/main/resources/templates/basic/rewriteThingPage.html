@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 정보 수정</title>
+</head>
+
+<style>
+    .container{
+        margin : 50px auto;
+    }
+
+    .updatenotify{
+        color : red;
+    }
+</style>
+<body>
+
+    <div class="container">
+
+        <p th:text="${notify}?: _"></p>
+
+        <form method="post" th:action="@{/basic/work-list/updateinfo}">
+            <input type="hidden" th:value="${thingIdNum}" name="id"/>
+            <span>물품 이름 입력 : </span> <input type="text" name="inputThingName">
+            <br/>
+            <span>물품 내용 입력 : </span> <input type="text" name="inputThingContent">
+            <button type="submit">수정</button>
+        </form>
+    </div>
+
+</body>
+</html>

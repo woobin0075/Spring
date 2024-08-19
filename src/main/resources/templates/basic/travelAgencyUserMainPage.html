@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>여행 대행사 메인 페이지</title>
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+
+        #travelScroll{
+            height : 500px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a th:href="@{/basic/work-list/travelAgencyUserLike}">선호도 입력/수정 페이지</a>
+    </div>
+
+    <div class="container">
+        <h3>선호도 입력 기반 추천</h3>
+        <form method="get" th:action="@{/basic/work-list/travelAgency/recommend}">
+            <button>검색</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>가격별 검색</h3>
+        <form method="get" th:action="@{/basic/work-list/travelAgency/price}">
+            <span>최저 예산 : </span><input type="text" name="inputLowPrice"/>
+            <br/>
+            <span>최고 예산 : </span><input type="text" name="inputHighPrice">
+            <br/>
+            <button>검색</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>여행 기간별 검색</h3>
+        <form method="get" th:action="@{/basic/work-list/travelAgency/days}">
+            <span>최소 기간 : </span><input type="text" name="inputShortDays"/>
+            <br/>
+            <span>최장 기간 : </span><input type="text" name="inputLongDays">
+            <br/>
+            <button>검색</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h3>관심 여행지별 검색</h3>
+        <form method="get" th:action="@{/basic/work-list/travelAgency/region}">
+            <span>여행지 입력 : </span><input type="text" name="inputRegion"/>
+            <br/>
+            <button>검색</button>
+        </form>
+    </div>
+
+    <div class="container" id="travelScroll">
+
+        <div>
+            <p id="alarm" th:text="${alarm}?: _"></p>
+        </div>
+
+        <div th:each="travel, stat : ${travels}">
+
+            <div>
+                <h6 th:text="${stat.count}"></h6>
+                <span>패키지 이름 : </span><span th:text="${travel.getPackageName}"></span>
+                <br/>
+                <span>가격 : </span><span th:text="${travel.getPrice}"></span>
+                <br/>
+                <span>여행 기간 : </span><span th:text="${travel.getDays}"></span>
+                <br/>
+                <span>지역 : </span><span th:text="${travel.getRegion}"></span>
+                <br/>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

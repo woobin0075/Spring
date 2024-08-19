@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관라자용 페이지</title>
+
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+        <ul th:each="project : ${unFinished}">
+
+            <li th:text="${project.getProjectName}"></li>
+
+        </ul>
+    </div>
+
+    <div class="container">
+        <a th:href="@{/basic/work-list/coporateOpenProject}">프로젝트 열람</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateProjectUpload}">프로젝트 업로드</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateProjectLimitDate}">프로젝트 마감 기한 설정</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateProjectModifyAndRemove}">프로젝트 수정 및 삭제</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateParticipateUser}">프로젝트 사용자 할당</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateRemoveUser}">프로젝트 사용자 제거</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateAllowedUser}">사용자 프로젝트 열람 승인</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateProjectFinish}">프로젝트 완료 승인</a>
+        <br/>
+        <br/>
+        <a th:href="@{/basic/work-list/coporateReportConfirm}">보고서 승인</a>
+        <br/>
+    </div>
+</body>
+</html>

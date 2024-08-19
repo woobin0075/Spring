@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>발전소 생성 페이지</title>
+
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+
+        .status{
+         color : red;
+         font-size : 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="status" th:if="${param.plantStatus}" th:text="'잘못된 번호 입니다.'"></div>
+    </div>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+      <h3>현재 발전소 상태</h3>
+      <span>화석 연료 발전소 수 : </span><span th:text="${player.fossilFuelEnergyPlantsNum}"></span>
+      <br/><br/>
+      <span>태양광 발전소 수 : </span><span th:text="${player.sunshineEnergyPlantsNum}"></span>
+      <br/><br/>
+      <span>풍력 발전소 수 : </span><span th:text="${player.windEnergyPlantsNum}"></span>
+      <br/><br/>
+      <span>수력 발전소 수 : </span><span th:text="${player.waterEnergyPlantsNum}"></span>
+      <br/><br/>
+    </div>
+
+    <div class="container">
+      <form method="post" th:action="@{/basic/work-list/energyGamePlay/addEnergyBuilding/add}">
+          <p>화석 연료 1번, 태양광 2번, 풍력 3번, 수력 4번</p>
+          <br/>
+        <span>번호 입력 : </span><input type="text" name="inputPlantNum"/>
+        <button type="submit">추가</button>&nbsp;&nbsp;
+          <a th:href="@{/basic/work-list/energyGamePlay}">이전 페이지로</a>
+      </form>
+    </div>
+
+</body>
+</html>

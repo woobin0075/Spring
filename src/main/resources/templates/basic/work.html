@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+        body{
+    background-color: black;
+    font-weight: bold;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    align-works: center;
+    height: 100vh;
+}
+input{
+    width:400px;
+    height:25px;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    display: flex;
+}
+button{
+	cursor: pointer;
+	width:200px;
+	height:30px;
+}
+.square{
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    margin: 40px;
+}
+.square span{
+    position:absolute;
+    width: inherit;
+    border:1px solid white;
+    height:inherit;
+    border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+    transition: 5s;
+}
+
+.square:nth-child(1):hover span{
+    background-color: gray;
+}
+
+.square span:nth-child(1){
+    animation: circle 12s linear infinite;
+}
+.square span:nth-child(2){
+    animation: circle 8s linear infinite;
+    animation-direction: reverse;
+}
+.square span:nth-child(3){
+    animation: circle 20s linear infinite;
+}
+
+.square:hover span:nth-child(1){
+    opacity: 0.3;
+}
+.square:hover span:nth-child(2){
+    opacity: 0.6;
+}
+.square:hover span:nth-child(3){
+    opacity: 0.8;
+}
+
+.square div{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width:70%;
+    text-align: center;
+    color:white;
+}
+.square div a {
+    color:white;
+    border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+    border:1px solid white;
+    padding: 8px;
+}
+@keyframes circle{
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="square">
+    <span></span>
+    <span></span>
+    <span></span>
+    <div class="content">
+      <h2>The current screen is the post details screen</h2>
+      <hr>
+      <label>Data number of the current post</label>
+      <br/><br/><input id="workId" name="workId" value="1" th:value="${work.id}" disabled />
+      <hr>
+
+      <label>name given by you</label>
+      <br/><br/><input id="workName" name="workName" value="현재 존재하지 않음" th:value="${work.workName}"disabled/>
+      <hr>
+
+      <label>This is the address you specified</label>
+      <br/><br/><input id="workAddress" name="workAddress" value="현재 존재하지 않음" th:value="${work.workAddress}"disabled/>
+      <hr>
+
+      <label>Pay specified by you</label>
+      <br/><br/><input id="workPay" name="workPay" value=100000 th:value="${work.pay}" disabled/>
+      <hr>
+
+
+      <br/><br/><br/>
+      <button href="#none" th:onClick="|location.href='@{/basic/works/{workId}/edit(workId=${work.id})}'|">Edit Content</button>
+      <button href="#none" th:onClick="|location.href='@{/basic/work-list}'|">Go To Main</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

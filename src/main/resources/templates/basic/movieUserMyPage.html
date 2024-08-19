@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>유저 마이페이지 예매 목록</title>
+
+    <style>
+        .container{
+            width : 400px;
+            margin : 50px auto;
+        }
+
+        ul{
+         list-style-type: none;
+        }
+
+        #alarm{
+           color : red;
+           font-size : 20px;
+        }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="alarm" th:text="${alarm}?: _"></p>
+    </div>
+
+    <div class="container">
+
+        <h2>예매 목록</h2>
+        <ul th:each="myMovie : ${reservations}">
+            <li>
+                <span th:text="${myMovie.movieTitle}"></span>
+                <br/>
+                관람 시간 : <span th:text="${#temporals.format(myMovie.watchDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></span>
+                <br/>
+                좌석 :  <span th:text="${myMovie.seat}"></span>
+                <br/>
+                <a th:href="@{|/basic/work-list/moviemypage/${myMovie.movieTitle}/${myMovie.seat}|}">예매 취소</a>
+            </li>
+        </ul>
+
+        <h2>할인 코드</h2>
+        <ul th:each="myCode : ${MyCodes}">
+            <li>
+                <span th:text="${myCode.code}"></span>&nbsp;&nbsp;
+                <span th:text="(myCode.isUsed) ? '사용가능' : '사용불가'"></span>&nbsp;&nbsp;
+                <br/>
+            </li>
+        </ul>
+
+        <a th:href="@{|/basic/work-list/moviemainpage|}">메인페이지 이동</a>
+    </div>
+</body>
+</html>

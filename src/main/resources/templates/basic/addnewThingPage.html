@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 추가 페이지</title>
+
+    <style>
+      .container{
+        width : 450px;
+        margin : 50px auto;
+        border : 4px groove #FF8200;
+        border-radius: 8px;
+        text-align : center;
+      }
+
+      .w-btn{
+        width : 150px;
+        border: none;
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        color: white;
+        margin : 10px;
+        font-size : 20px;
+      }
+
+      input{
+        font-size: 15px;
+        color: #222222;
+        width: 200px;
+        border: none;
+        border-bottom: solid #aaaaaa 1px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+      <p th:text="${notify}?: _"></p>
+
+    <form method="post" th:action="@{/basic/work-list/addnewthing/add/}">
+      <h3>새 물품 정보 입력</h3>
+      <span>물품 제목 입력 : </span> <input type="text" name="inputNewThingName" placeholder="물품 제목 입력"/>
+      <br/>
+      <span>상세 내용 입력 : </span> <input type = "text" name="inputNewThingContent" placeholder="물품 상세 내용 입력">
+      <br>
+      <button class="w-btn" type="submit">물품 저장</button>
+    </form>
+  </div>
+</body>
+</html>

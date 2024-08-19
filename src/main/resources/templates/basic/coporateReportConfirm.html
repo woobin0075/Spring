@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>프로젝트 보고서 확인 겸 승인</title>
+    <style>
+        .container{
+        width : 500px;
+        margin : 50px auto;
+
+      }
+
+      #alarm{
+         color : red;
+         font-size : 20px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <p id="alarm" th:text="${alarm}?: _"></p>
+  </div>
+
+  <div class="container">
+    <form method="get" th:action="@{/basic/work-list/coporateReportConfirm/confirm}">
+      <span>담당하는 프로젝트 이름 입력 : </span><input type="text" name="inputProjectName"/>
+      <br/>
+      <span>프로젝트 관련 팀 입력 : </span><input type="text" name="inputTeamName"/>
+      <br/>
+      <span>출력 혹은 승인 : </span><input type="text" name="inputCheck" placeholder="보고서 내용을 보고 싶으면 0을 아니면 그 외 다른 숫자 입력"/>
+      <br/>
+      <button type="submit">보고서 내용 출력 혹은 승인</button>&nbsp;&nbsp;
+        <a th:href="@{/basic/work-list/coporatePageforAdvisor}">이전 페이지로</a>
+    </form>
+    <p th:text="${report}?: _"></p>
+  </div>
+</body>
+</html>
